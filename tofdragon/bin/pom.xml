@@ -1,0 +1,159 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.tofdragon</groupId>
+	<artifactId>tofdragon</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>tofdragon</name>
+	<url>http://maven.apache.org</url>
+
+	<!-- 包含模块 -->
+	<modules>
+		<!-- 框架 UI层 -->
+		<module>../tofdragon-ui</module>
+		<!-- 框架 应用层 -->
+		<module>../tofdragon-application</module>
+		<!-- 框架 领域层 -->
+		<module>../tofdragon-core</module>
+		<!-- 框架 基础层 -->
+		<module>../tofdragon-infrastructure</module>
+	</modules>
+
+	<!-- 定义属性，后面可以引用 ${} -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.min.version>1.7</java.min.version>
+		<maven.min.version>3.0.0</maven.min.version>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.compilerVersion>1.7</maven.compiler.compilerVersion>
+
+        <!-- 框架的版本 -->
+		<tofdragon.version>0.0.1-SNAPSHOT</tofdragon.version>
+		<!-- Spring的版本 -->
+		<spring.version>4.0.4.RELEASE</spring.version>
+		<!-- Hibernate的版本 -->
+		<hibernate.version>4.3.5.Final</hibernate.version>
+	</properties>
+
+	<!-- 管理包 统一管理项目依赖的所有包 -->
+	<dependencyManagement>
+
+		<dependencies>
+
+			<dependency>
+				<groupId>com.tofdragon</groupId>
+				<artifactId>tofdragon-core</artifactId>
+				<version>${tofdragon.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.tofdragon</groupId>
+				<artifactId>tofdragon-application</artifactId>
+				<version>${tofdragon.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.tofdragon</groupId>
+				<artifactId>tofdragon-infrastructure</artifactId>
+				<version>${tofdragon.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.11</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- Spring begin -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<!-- Spring集成Hibernate -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<!-- Spring end -->
+
+			<!-- Hibernate begin -->
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>${hibernate.version}</version>
+			</dependency>
+			<!-- Hibernate end -->
+
+
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>5.1.29</version>
+			</dependency>
+
+			<!-- UI层 begin -->
+			<dependency>
+				<groupId>org.glassfish</groupId>
+				<artifactId>javax.faces</artifactId>
+				<version>2.2.6</version>
+			</dependency>
+
+			<dependency>
+	          <groupId>org.primefaces</groupId>
+	          <artifactId>primefaces</artifactId>
+	          <version>5.0</version>
+            </dependency>
+
+			<!-- j2ee 7 -->
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-web-api</artifactId>
+				<version>7.0</version>
+			</dependency>
+			<!-- UI层 end -->
+		</dependencies>
+
+	</dependencyManagement>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>${java.min.version}</source>
+					<target>${java.min.version}</target>
+					<fork>true</fork>
+					<!-- <profile> <id>compiler</id> <properties> <JAVA_1_7_HOME>jdkHome</JAVA_1_7_HOME> 
+						</properties> </profile> <activeProfiles> <activeProfile>compiler</activeProfile> 
+						</activeProfiles> -->
+					<executable>${JAVA_1_7_HOME}/bin/javac</executable>
+					<compilerVersion>1.7</compilerVersion>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

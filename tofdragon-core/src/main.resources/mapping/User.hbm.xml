@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.tofdragon.core.ums.model.User" table="s_user" catalog="tofdragon">
+
+		<id name="id" type="int">
+			<column name="ID" />
+			<generator class="identity" />
+		</id>
+		<property name="userCode" type="string">
+			<column name="USER_CODE" length="45" not-null="true" />
+		</property>
+		<property name="userName" type="string">
+			<column name="USER_NAME" not-null="true" />
+		</property>
+	</class>
+</hibernate-mapping>

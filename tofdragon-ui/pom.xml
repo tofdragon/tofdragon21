@@ -1,0 +1,117 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- 定义父类 -->
+	<parent>
+		<groupId>com.tofdragon</groupId>
+		<artifactId>tofdragon</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../tofdragon/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>tofdragon-ui</artifactId>
+	<name>tofdragon-ui</name>
+	<packaging>war</packaging>
+	<url>http://maven.apache.org</url>
+
+    <properties>
+       <!--
+       <copy.dependencies.path>${project.build.directory}/alternateLocation</copy.dependencies.path>
+       -->
+       <copy.dependencies.path>src/main/webapp/WEB-INF/lib</copy.dependencies.path>
+    </properties>
+	<dependencies>
+		<!-- 引用dependenciseManager 此处不需要version和 -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-web-api</artifactId>
+			<scope>compile</scope>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.faces</artifactId>
+		</dependency>
+
+		<dependency>
+	          <groupId>org.primefaces</groupId>
+	          <artifactId>primefaces</artifactId>
+        </dependency>
+        
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+        
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		
+		<dependency>
+				 <groupId>com.tofdragon</groupId>
+	             <artifactId>tofdragon-core</artifactId>
+	    </dependency>
+	  
+	  <dependency>
+				 <groupId>com.tofdragon</groupId>
+	             <artifactId>tofdragon-application</artifactId>
+	  </dependency>
+	  
+	  <dependency>
+			<groupId>com.tofdragon</groupId>
+			<artifactId>tofdragon-infrastructure</artifactId>
+	  </dependency>
+
+
+	</dependencies>
+
+	<build>
+		<!-- <finalName>tofdragon</finalName> <plugins> <plugin> <groupId>org.apache.tomcat.maven</groupId> 
+			<artifactId>tomcat7-maven-plugin</artifactId> <version>2.2</version> <configuration> 
+			<url>http://localhost:8888/manager/text</url> <username>admin</username> 
+			<password>admin</password> <uriEncoding>UTF-8</uriEncoding> </configuration>s 
+			</plugin> </plugins> -->
+
+		<plugins>
+		  
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.8</version>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${copy.dependencies.path}</outputDirectory>
+							<overWriteReleases>false</overWriteReleases>
+							<overWriteSnapshots>true</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+							<includeScope>runtime</includeScope>
+							<!-- 部署到tomcat会和tomcat下面的包冲突 -->
+							<excludeArtifactIds>javaee-web-api</excludeArtifactIds>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+
+

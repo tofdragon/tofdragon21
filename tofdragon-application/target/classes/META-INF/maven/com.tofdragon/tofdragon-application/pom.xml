@@ -1,0 +1,38 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- 定义父类 -->
+	<parent>
+		<groupId>com.tofdragon</groupId>
+		<artifactId>tofdragon</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../tofdragon/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>tofdragon-application</artifactId>
+	<packaging>jar</packaging>
+
+	<name>tofdragon-application</name>
+	<url>http://maven.apache.org</url>
+
+	<dependencies>
+		<!-- 引用dependenciseManager 此处不需要version和 -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.tofdragon</groupId>
+			<artifactId>tofdragon-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.tofdragon</groupId>
+			<artifactId>tofdragon-infrastructure</artifactId>
+		</dependency>
+
+	</dependencies>
+
+</project>
